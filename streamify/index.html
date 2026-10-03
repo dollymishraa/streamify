@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Streamify</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <nav class="panel nav">
+        <a class="logo" href="#">Streamify</a>
+        <button class="nav-item active" data-view="home">Home</button>
+        <button class="nav-item" data-view="search">Search</button>
+      </nav>
+      <section class="panel library">
+        <div class="lib-head"><h2>Your Library</h2><button id="new-pl" title="Create playlist">+</button></div>
+        <ul id="playlist-list"></ul>
+      </section>
+    </aside>
+
+    <main class="panel main">
+      <header class="topbar">
+        <input id="search" type="search" placeholder="What do you want to play?" aria-label="Search">
+        <div class="user">
+          <span id="user-avatar" class="avatar"></span>
+          <span id="user-name"></span>
+          <button id="logout">Log out</button>
+        </div>
+      </header>
+      <h1 id="greeting"></h1>
+      <div id="extras">
+        <div id="quick" class="quick"></div>
+        <h2>Albums</h2>
+        <div id="cards" class="cards"></div>
+      </div>
+      <h2 id="tracks-title">Tracks</h2>
+      <ol id="tracks" class="tracks"></ol>
+    </main>
+
+    <footer class="player">
+      <div class="now">
+        <div id="np-cover" class="cover sm"></div>
+        <div><strong id="np-title">Nothing playing</strong><span id="np-artist">Pick a track</span></div>
+        <button id="np-like" class="heart" title="Like (L)">♡</button>
+      </div>
+      <div class="controls">
+        <div class="buttons">
+          <button id="shuffle" title="Shuffle">⇄</button>
+          <button id="prev" title="Previous (Shift+←)">⏮</button>
+          <button id="play" class="play" title="Play (Space)">▶</button>
+          <button id="next" title="Next (Shift+→)">⏭</button>
+          <button id="repeat" title="Repeat">↻</button>
+        </div>
+        <div class="progress">
+          <span id="cur">0:00</span>
+          <input id="seek" type="range" min="0" max="100" value="0" aria-label="Seek">
+          <span id="dur">0:00</span>
+        </div>
+      </div>
+      <div class="volume">
+        <button id="mute" title="Mute (M)">🔊</button>
+        <input id="vol" type="range" min="0" max="1" step="0.01" value="0.7" aria-label="Volume">
+      </div>
+    </footer>
+  </div>
+
+  <div id="auth" class="overlay" hidden>
+    <form id="auth-form" class="modal" novalidate>
+      <h2 class="brand">Streamify</h2>
+      <div class="tabs">
+        <button type="button" data-mode="in" class="on">Sign in</button>
+        <button type="button" data-mode="up">Sign up</button>
+      </div>
+      <input id="auth-name" type="text" placeholder="Name" autocomplete="name" hidden>
+      <input id="auth-email" type="email" placeholder="Email" autocomplete="email" required>
+      <input id="auth-pass" type="password" placeholder="Password (6+ characters)" autocomplete="current-password" required>
+      <p id="auth-err" class="err" role="alert"></p>
+      <button id="auth-submit" class="primary">Sign in</button>
+      <button type="button" id="guest" class="ghost">Continue as guest</button>
+    </form>
+  </div>
+
+  <div id="toast" class="toast" hidden></div>
+  <input id="playlist-cover-input" type="file" accept="image/*" hidden>
+  <audio id="audio" preload="none"></audio>
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
